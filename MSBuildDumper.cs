@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Microsoft.Build.Evaluation;
 
 class MSBuildDumper
@@ -15,14 +16,18 @@ class MSBuildDumper
         var projectFilePath = Path.GetFullPath(args[0]);
         var project = new Project(projectFilePath); // add reference to Microsoft.Build.dll to compile
 
-        foreach (var property in project.AllEvaluatedProperties)
+        foreach (var property in project.AllEvaluatedProperties.OrderBy(p => p.Name))
         {
-            Console.WriteLine(" {0}={1}", property.Name, property.EvaluatedValue);
+            Console.WriteLine("{0}={1}", property.Name, property.EvaluatedValue);
         }
 
-        foreach (var item in project.AllEvaluatedItems)
+        foreach (var itemGroup in project.AllEvaluatedItems.GroupBy(i => i.ItemType).OrderBy(g => g.Key))
         {
-            Console.WriteLine(" {0}: {1}", item.ItemType, item.EvaluatedInclude);
+            Console.WriteLine("==================\r\n{0}", itemGroup.Key);
+            foreach (var item in itemGroup)
+            {
+                Console.WriteLine("    " + item.EvaluatedInclude);
+            }
         }
     }
 }
