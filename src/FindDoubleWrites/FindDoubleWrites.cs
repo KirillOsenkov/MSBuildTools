@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace FindDoubleWrites
@@ -20,7 +21,7 @@ namespace FindDoubleWrites
             var sb = new StringBuilder();
             foreach (var bucket in sourcesForDestination)
             {
-                if (bucket.Value.Count > 1)
+                if (IsDoubleWrite(bucket))
                 {
                     sb.AppendLine("Double-write for file: " + bucket.Key);
 
@@ -34,6 +35,25 @@ namespace FindDoubleWrites
             }
 
             File.WriteAllText("report.txt", sb.ToString());
+        }
+
+        private static bool IsDoubleWrite(KeyValuePair<string, HashSet<string>> bucket)
+        {
+            if (bucket.Value.Count < 2)
+            {
+                return false;
+            }
+
+            if (bucket.Value
+                .Select(f => new FileInfo(f))
+                .Select(f => f.LastWriteTimeUtc.ToString() + f.Length.ToString())
+                .Distinct()
+                .Count() == 1)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private static void ProcessCopyLog(string copylog)
