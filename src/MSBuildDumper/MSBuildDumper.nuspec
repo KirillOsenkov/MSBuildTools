@@ -3,14 +3,14 @@
   <metadata>
     <!-- Read this before publishing packages to chocolatey.org: https://github.com/chocolatey/chocolatey/wiki/CreatePackages -->
     <id>MSBuildDumper</id>
-    <title>Dump MSBuild project properties and item values</title>
+    <title>MSBuild Dumper</title>
     <version>1.0.0</version>
     <authors>Kirill Osenkov</authors>
     <owners>KirillOsenkov</owners>
     <summary>Dump the evaluated values of all properties and items for an MSBuild project without building it.</summary>
-    <description>Specify a project (*.csproj) on the command line.</description>
-    <projectUrl>http://github.com/kirillosenkov/msbuildtools</projectUrl>
-    <tags>MSBuild</tags>
+    <description>Dump the evaluated values of all properties and items for an MSBuild project without building it. Specify a project (*.csproj) on the command line.</description>
+    <projectUrl>https://github.com/KirillOsenkov/MSBuildTools</projectUrl>
+    <tags>MSBuild csproj</tags>
     <copyright></copyright>
     <licenseUrl>http://mit-license.org/</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
