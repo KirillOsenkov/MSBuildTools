@@ -72,7 +72,7 @@ namespace ProjectReferenceGraph
                 streamWriter.WriteLine("  <Nodes>");
                 foreach (var kvp in references)
                 {
-                    streamWriter.WriteLine(string.Format("    <Node Id=\"{0}\" />", GetNodeName(kvp.Key)));
+                    streamWriter.WriteLine($"    <Node Id=\"{GetNodeName(kvp.Key)}\" />");
                 }
 
                 streamWriter.WriteLine("  </Nodes>");
@@ -81,7 +81,7 @@ namespace ProjectReferenceGraph
                 {
                     foreach (var reference in kvp.Value)
                     {
-                        streamWriter.WriteLine(string.Format("    <Link Source=\"{0}\" Target=\"{1}\" />", GetNodeName(kvp.Key), GetNodeName(reference)));
+                        streamWriter.WriteLine($"    <Link Source=\"{GetNodeName(kvp.Key)}\" Target=\"{GetNodeName(reference)}\" />");
                     }
                 }
 
@@ -90,7 +90,7 @@ namespace ProjectReferenceGraph
             }
         }
 
-        private static object GetNodeName(string filePath)
+        private static string GetNodeName(string filePath)
         {
             return Path.GetFileNameWithoutExtension(filePath);
         }
