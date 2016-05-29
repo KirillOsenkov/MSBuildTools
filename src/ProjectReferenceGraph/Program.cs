@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 
@@ -26,7 +24,7 @@ namespace ProjectReferenceGraph
                 return;
             }
 
-            var references = new Dictionary<string, HashSet<string>>();
+            var references = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
 
             var solution = SolutionFile.Parse(solutionFilePath);
             foreach (var projectInSolution in solution.ProjectsInOrder)
