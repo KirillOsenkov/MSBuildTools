@@ -17,7 +17,7 @@ namespace ProjectReferenceGraph
                 return;
             }
 
-            var solutionFilePath = args[0];
+            var solutionFilePath = Path.GetFullPath(args[0]);
             if (!File.Exists(solutionFilePath))
             {
                 Console.Error.WriteLine("Solution file not found: " + solutionFilePath);
