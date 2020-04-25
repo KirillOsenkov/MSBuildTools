@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolsetLayout", "src\ToolsetLayout\ToolsetLayout.csproj", "{2768064E-45B1-49FB-8487-F22557DE403D}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSBuildDumper", "src\MSBuildDumper\MSBuildDumper.csproj", "{404B4D45-C349-4F3A-87EF-2277A3F7F45E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindDoubleWrites", "src\FindDoubleWrites\FindDoubleWrites.csproj", "{F9EB74A3-4B14-4E00-91D6-00F3DFCBBA04}"
@@ -27,6 +29,10 @@ Global
 		{4E295548-6E79-443A-8519-82DB24C6533E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E295548-6E79-443A-8519-82DB24C6533E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E295548-6E79-443A-8519-82DB24C6533E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2768064E-45B1-49FB-8487-F22557DE403D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2768064E-45B1-49FB-8487-F22557DE403D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2768064E-45B1-49FB-8487-F22557DE403D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2768064E-45B1-49FB-8487-F22557DE403D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
