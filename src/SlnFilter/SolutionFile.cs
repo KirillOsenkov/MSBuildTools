@@ -85,7 +85,7 @@ namespace Microsoft.Ide.ProjectSystem
                 kvp.Key.IndexOf(guidString, StringComparison.OrdinalIgnoreCase) != -1);
 
             NestedProjectsGlobalSection.RemoveEntry(kvp =>
-                kvp.Value.IndexOf(guidString, StringComparison.OrdinalIgnoreCase) != -1);
+                kvp.Key.IndexOf(guidString, StringComparison.OrdinalIgnoreCase) != -1);
 
             SharedMSBuildProjectFiles.RemoveEntry(kvp =>
                 kvp.Key.IndexOf(guidString, StringComparison.OrdinalIgnoreCase) != -1);
