@@ -12,6 +12,10 @@ config.txt is a list of projects to exclude, with wildcards supported. Every lin
 !src\Relative\Path\To\Project.csproj
 ```
 
+Related tools: 
+ * [https://microsoft.github.io/slngen](https://microsoft.github.io/slngen)
+ * [https://github.com/AndyGerlicher/SlnfGen](https://github.com/AndyGerlicher/SlnfGen)
+
 # MSBuildDumper
 Tool that dumps the evaluated values of all properties and items for a project without building it.
 
