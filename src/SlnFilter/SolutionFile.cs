@@ -87,6 +87,9 @@ namespace Microsoft.Ide.ProjectSystem
             NestedProjectsGlobalSection.RemoveEntry(kvp =>
                 kvp.Value.IndexOf(guidString, StringComparison.OrdinalIgnoreCase) != -1);
 
+            SharedMSBuildProjectFiles.RemoveEntry(kvp =>
+                kvp.Key.IndexOf(guidString, StringComparison.OrdinalIgnoreCase) != -1);
+
             foreach (var item in ProjectsInOrder)
             {
                 var projectDependencies = item.ProjectSections.FirstOrDefault(s => s.ParenthesizedName == "ProjectDependencies");
