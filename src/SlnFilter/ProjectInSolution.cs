@@ -16,6 +16,8 @@ namespace Microsoft.Ide.ProjectSystem
         public string ProjectGuidText { get; }
         public IEnumerable<SectionBlock> ProjectSections { get; }
 
+        public bool IsSolutionFolder => ProjectTypeGuid == solutionFolderGuid;
+
         private static readonly Guid vbProjectGuid = Guid.Parse("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}");
         private static readonly Guid csProjectGuid = Guid.Parse("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}");
         private static readonly Guid vjProjectGuid = Guid.Parse("{E6FDF86B-F3D1-11D4-8576-0002A516ECE8}");
