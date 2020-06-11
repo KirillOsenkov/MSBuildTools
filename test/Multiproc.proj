@@ -1,0 +1,12 @@
+<Project>
+  <ItemGroup>
+    <P Include="$(MSBuildThisFileFullPath)" AdditionalProperties="Number=1" />
+    <P Include="$(MSBuildThisFileFullPath)" AdditionalProperties="Number=2" />
+  </ItemGroup>
+  <Target Name="Spawn">
+    <MSBuild Projects="@(P)" BuildInParallel="true" Targets="Inner" />
+  </Target>
+  <Target Name="Inner">
+    <Message Importance="High" Text="Hello from project $(Number)" />
+  </Target>
+</Project>
