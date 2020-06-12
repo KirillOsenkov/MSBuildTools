@@ -1,0 +1,19 @@
+<Project>
+
+  <UsingTask
+    TaskName="Hello"
+    TaskFactory="CodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll" >
+    <ParameterGroup>
+      <YourName ParameterType="System.String" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Class" Language="cs" Source="$(MSBuildThisFileDirectory)\task.cs"/>
+    </Task>
+  </UsingTask>
+
+  <Target Name="Build">
+    <Hello YourName="Kirill" />
+  </Target>
+
+</Project>
