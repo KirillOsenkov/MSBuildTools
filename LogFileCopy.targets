@@ -1,0 +1,71 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <UsingTask TaskName="Copy" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <SourceFiles Required="true" ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
+      <DestinationFolder ParameterType="Microsoft.Build.Framework.ITaskItem" />
+      <Retries ParameterType="System.Int32" />
+      <RetryDelayMilliseconds ParameterType="System.Int32" />
+      <UseHardlinksIfPossible ParameterType="System.Boolean" />
+      <SkipUnchangedFiles ParameterType="System.Boolean" />
+      <DestinationFiles Output="true" ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
+      <CopiedFiles Output="true" ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
+      <OverwriteReadOnlyFiles ParameterType="System.Boolean" />
+    </ParameterGroup>
+    <Task>
+      <Reference Include="mscorlib" />
+      <Reference Include="Microsoft.Build" />
+      <Reference Include="Microsoft.Build.Framework" />
+      <Reference Include="Microsoft.Build.Tasks.Core" />
+      <Using Namespace="System" />
+      <Using Namespace="System.Linq" />
+      <Using Namespace="System.Text" />
+      <Using Namespace="Microsoft.Build.Framework" />
+      <Using Namespace="Microsoft.Build.Shared" />
+      <Using Namespace="Microsoft.Build.Tasks" />
+      <Using Namespace="Microsoft.Build.Utilities" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+
+Func<Microsoft.Build.Tasks.Copy, string> PrintItems = c => 
+{
+    var sb = new StringBuilder();
+
+    for (int i = 0; i < c.SourceFiles.Length; i++)
+    {
+        var sourcePath = c.SourceFiles[i].GetMetadata("FullPath");
+        var destinationPath = c.DestinationFiles[i].GetMetadata("FullPath");
+        if (sourcePath != destinationPath)
+        {
+            sb.AppendLine(sourcePath);
+            sb.AppendLine(destinationPath);
+        }
+    }
+
+    return sb.ToString();
+};
+
+var copy = new Microsoft.Build.Tasks.Copy();
+copy.BuildEngine = BuildEngine;
+copy.SourceFiles = SourceFiles;
+copy.DestinationFolder = DestinationFolder;
+copy.DestinationFiles = DestinationFiles;
+copy.Retries = Retries;
+copy.RetryDelayMilliseconds = RetryDelayMilliseconds;
+copy.UseHardlinksIfPossible = UseHardlinksIfPossible;
+copy.SkipUnchangedFiles = SkipUnchangedFiles;
+copy.OverwriteReadOnlyFiles = OverwriteReadOnlyFiles;
+var result = copy.Execute();
+
+lock(this.GetType())
+{
+    File.AppendAllText("copylog.txt", PrintItems(copy));
+}
+
+return result;
+]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+</Project>
