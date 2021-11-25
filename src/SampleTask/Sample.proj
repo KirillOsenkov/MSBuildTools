@@ -1,0 +1,9 @@
+<Project DefaultTargets="Build">
+
+  <UsingTask TaskName="SampleTask" AssemblyFile="bin\Debug\net472\SampleTask.dll" />
+
+  <Target Name="Build">
+    <SampleTask StringParam="sampleParam" />
+  </Target>
+
+</Project>
