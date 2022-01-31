@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Sample</id>
+    <title>Sample NuGet package</title>
+    <authors>Author</authors>
+    <owners>Owner</owners>
+    <version>$currentVersion$</version>
+    <language>en-US</language>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/KirillOsenkov/MSBuildTools</projectUrl>
+    <icon>Icon.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Long winded description.</description>
+    <summary>Short summary</summary>
+    <tags>MSBuild Nuspec Nupkg Pack PackTask NuGet</tags>
+  </metadata>
+  <files>
+    <file src="PackNuspec.dll" target="lib\net472" />
+    <file src="Icon.png" target="Icon.png" />
+  </files>
+</package>

@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <DebugType>embedded</DebugType>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <Target Name="PrepareNupkgInfo" AfterTargets="CoreBuild">
+    <PropertyGroup>
+      <NuspecPath>$(MSBuildProjectDirectory)\Sample.nuspec</NuspecPath>
+      <NupkgPath>$(OutDir)Sample.nupkg</NupkgPath>
+      <Version>1.0.42</Version>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="CreateNupkg"
+          AfterTargets="Build"
+          Inputs="$(TargetPath);$(NuspecPath);$(MSBuildThisFileFullPath)"
+          Outputs="$(NupkgPath)">
+    <PackTask
+        PackItem="$(NuspecPath)"
+        NuspecFile="$(NuspecPath)"
+        NuspecBasePath="$(OutDir)"
+        NuspecProperties="currentVersion=$(Version)"
+        NuspecOutputPath="$(NuspecOutputPath)"
+        PackageOutputPath="$(OutDir)"
+        RestoreOutputPath="$(RestoreOutputPath)"
+        SymbolPackageFormat="snupkg"
+        />
+  </Target>
+
+</Project>
