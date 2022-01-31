@@ -6,6 +6,12 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="Icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <Target Name="PrepareNupkgInfo" AfterTargets="CoreBuild">
     <PropertyGroup>
       <NuspecPath>$(MSBuildProjectDirectory)\Sample.nuspec</NuspecPath>
