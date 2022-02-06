@@ -1,0 +1,12 @@
+<Project DefaultTargets="SetSourceRevisionId">
+
+  <Target Name="SetSourceRevisionId">
+    <Exec Command="git rev-parse HEAD" StandardOutputImportance="Low" ConsoleToMSBuild="True" IgnoreExitCode="False" WorkingDirectory="$(MSBuildThisFileDirectory)">
+      <Output PropertyName="SourceRevisionId" TaskParameter="ConsoleOutput"/>
+    </Exec>
+    <PropertyGroup>
+      <SourceRevisionId>$(SourceRevisionId.Substring(0, 8))-$([System.DateTime]::Now.ToString('yyyyddMM-HHmmss'))</SourceRevisionId>
+    </PropertyGroup>
+  </Target>
+
+</Project>
