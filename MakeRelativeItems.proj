@@ -1,0 +1,20 @@
+<Project>
+
+  <ItemGroup>
+    <GeneratedFiles Include="C:\temp\net472\**\*.cs" />
+  </ItemGroup>
+
+  <Target Name="Build">
+    <ItemGroup Label="Works">
+      <GeneratedFilesWithMetadata Include="@(GeneratedFiles)">
+        <RelativePath>$([MSBuild]::MakeRelative('$(MSBuildProjectDirectory)','%(GeneratedFiles.Identity)'))</RelativePath>
+      </GeneratedFilesWithMetadata>
+      <GeneratedFilesRelative Include="@(GeneratedFilesWithMetadata->'%(RelativePath)')" />
+    </ItemGroup>
+
+    <ItemGroup Label="Doesn't work">
+      <Relative Include="@(GeneratedFiles->[MSBuild]::MakeRelative('$(MSBuildProjectDirectory)','%(Identity)'))" />
+    </ItemGroup>
+  </Target>
+
+</Project>
