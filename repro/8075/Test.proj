@@ -1,0 +1,7 @@
+<Project>
+<UsingTask TaskName="Class1" AssemblyFile="C:\temp\msbuild_8075\Task\bin\Debug\netstandard2.0\Task.dll" />
+
+<Target Name="lakesjt">
+  <Class1 />
+</Target>
+</Project>
