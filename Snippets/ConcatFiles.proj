@@ -15,6 +15,16 @@
       <ReplacedText>$(FullText.Replace("text", "string"))</ReplacedText>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ItemToHash Include="$(ReplacedText)" />
+    </ItemGroup>
+
+    <Hash ItemsToHash="@(ItemToHash)">
+      <Output TaskParameter="HashResult" PropertyName="FinalHash"/>
+    </Hash>
+
+    <Message Text="$(FinalHash)" Importance="High" />
+
   </Target>
   
 </Project>
