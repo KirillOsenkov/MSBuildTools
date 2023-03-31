@@ -1,0 +1,20 @@
+<Project>
+
+  <ItemGroup>
+    <File Include="C:\temp\1.txt" />
+    <File Include="C:\temp\2.txt" />
+  </ItemGroup>
+
+  <Target Name="Build">
+    <ReadLinesFromFile File="%(File.FullPath)">
+      <Output TaskParameter="Lines" ItemName="FileContents" />
+    </ReadLinesFromFile>
+
+    <PropertyGroup>
+      <FullText>@(FileContents)</FullText>
+      <ReplacedText>$(FullText.Replace("text", "string"))</ReplacedText>
+    </PropertyGroup>
+
+  </Target>
+  
+</Project>
