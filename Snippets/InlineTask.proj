@@ -1,0 +1,61 @@
+<Project>
+
+  <UsingTask TaskName="AppDomainTask" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <Input1 ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
+      <Output1 ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs">
+        Output1 = Input1;
+
+        var e = new BuildErrorEventArgs
+        (
+            "subcategory",
+            "errorCode",
+            "file",
+            1,
+            2,
+            3,
+            4,
+            "Message test {0}",
+            "helpKeyword",
+            "TaskName",
+            "helpLink",
+            DateTime.UtcNow,
+            new object[] { "arg" }
+        );
+        //BuildEngine.LogErrorEvent(e);
+
+        return Log.HasLoggedErrors;
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <ItemGroup>
+    <InputItem Include="1.input">
+      <Metadata1>metadata1</Metadata1>
+      <Metadata2>metadata2</Metadata2>
+    </InputItem>
+    <InputItem Include="2.input">
+      <Metadata1>metadata3</Metadata1>
+      <Metadata2>metadata4</Metadata2>
+    </InputItem>
+  </ItemGroup>
+
+  <Target Name="Build">
+    <MSBuild BuildInParallel="True"
+      Projects="$(MSBuildThisFileFullPath)"
+      Targets="RunTask"
+      Properties="A=%(InputItem.Identity)">
+      <Output TaskParameter="TargetOutputs" ItemName="CollectedBuildOutput" />
+    </MSBuild>
+  </Target>
+
+  <Target Name="RunTask">
+    <AppDomainTask Input1="@(InputItem)">
+      <Output TaskParameter="Output1" ItemName="OutputItem" />
+    </AppDomainTask>
+  </Target>
+
+</Project>
