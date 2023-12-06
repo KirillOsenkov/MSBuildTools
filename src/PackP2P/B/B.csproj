@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\A\A.csproj" OutputItemType="_PackageFiles" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>Sample.Package.Id</PackageId>
+    <Authors>Kirill Osenkov, Lance Collins</Authors>
+    <Company>Microsoft</Company>
+    <Description>This is a sample description</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/KirillOsenkov/MSBuildTools</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/KirillOsenkov/MSBuildTools</RepositoryUrl>
+    <PackageTags>Sample Package</PackageTags>
+  </PropertyGroup>
+
+</Project>
