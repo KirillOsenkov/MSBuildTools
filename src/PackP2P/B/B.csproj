@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\A\A.csproj" OutputItemType="_PackageFiles" />
+    <ProjectReference Include="..\A\A.csproj" OutputItemType="_PackageFiles" Targets="GetCopyToOutputDirectoryItems" />
   </ItemGroup>
 
   <PropertyGroup>

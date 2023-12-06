@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="A.targets" PackageCopyToOutput="True" />
+    <Content Include="A.targets" CopyToOutputDirectory="PreserveNewest" PackageCopyToOutput="True" />
   </ItemGroup>
 
 </Project>
