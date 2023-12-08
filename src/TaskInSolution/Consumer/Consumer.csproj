@@ -4,6 +4,11 @@
     <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <GenerateInputFiles Include="Input1.txt"/>
+    <GenerateOutputFiles Include="Output1.txt" />
+  </ItemGroup>
+
   <Import Project="$(MSBuildThisFileDirectory)..\Task\Task.targets" />
 
 </Project>

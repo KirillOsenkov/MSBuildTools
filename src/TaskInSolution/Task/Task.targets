@@ -1,7 +1,26 @@
 <Project>
 
-  <PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Task.csproj"
+        ReferenceOutputAssembly="False" />
+  </ItemGroup>
 
-  </PropertyGroup>
+  <UsingTask TaskName="Generate" AssemblyFile="bin\$(Configuration)\netstandard2.0\Task.dll" TaskFactory="TaskHostFactory" />
+
+  <Target Name="GenerateFiles"
+          BeforeTargets="CoreCompile"
+          DependsOnTargets="ResolveProjectReferences"
+          Inputs="@(GenerateInputFiles)"
+          Outputs="@(GenerateOutputFiles)">
+
+    <Generate InputFiles="@(GenerateInputFiles)" OutputFiles="@(GenerateOutputFiles)">
+      <Output
+        TaskParameter="OutputItems"
+        ItemName="GenerateOutputItems" />
+      <Output
+        TaskParameter="OutputProperty"
+        PropertyName="GenerateOutputProperty" />
+    </Generate>
+  </Target>
 
 </Project>
