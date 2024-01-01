@@ -10,6 +10,7 @@
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/KirillOsenkov/MSBuildTools</projectUrl>
     <icon>Icon.png</icon>
+    <readme>readme.md</readme>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Long winded description.</description>
     <summary>Short summary</summary>
@@ -21,5 +22,6 @@
   <files>
     <file src="PackNuspec.dll" target="lib\net472" />
     <file src="Icon.png" target="Icon.png" />
+    <file src="readme.md" />
   </files>
 </package>
