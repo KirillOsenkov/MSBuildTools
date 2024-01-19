@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference 
+        Include="..\ExeProject\ExeProject.csproj"
+        OutputItemType="DllPathItem"
+        ReferenceOutputAssembly="False" />
+  </ItemGroup>
+
+  <Target Name="RunExe" AfterTargets="ResolveProjectReferences">
+    <PropertyGroup>
+      <DllPath>@(DllPathItem)</DllPath>
+      <ExePath>$([System.IO.Path]::ChangeExtension('$(DllPath)', '.exe'))</ExePath>
+    </PropertyGroup>
+    <Exec Command="&quot;$(ExePath)&quot; arg1 arg2" ConsoleToMSBuild="True" />
+  </Target>
+
+</Project>
