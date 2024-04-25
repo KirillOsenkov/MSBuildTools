@@ -6,7 +6,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        const int count = 2000;
+        const int count = 1000;
 
         var rootDirectory = @"C:\temp\LargeSolution";
         if (Directory.Exists(rootDirectory))
@@ -17,7 +17,13 @@ class Program
         Directory.CreateDirectory(rootDirectory);
 
         string sharedFile = Path.Combine(rootDirectory, "SharedFile.cs");
-        File.WriteAllText(sharedFile, "using System; public class Version { }");
+        File.WriteAllText(sharedFile, 
+            $"""
+            using System;
+            public class Version { "{ }" }
+            {"#"}if Foo
+            {"#"}endif
+            """);
 
         var sln = Path.Combine(rootDirectory, "LargeSolution.sln");
 
@@ -32,14 +38,24 @@ class Program
             Directory.CreateDirectory(projectDirectory);
 
             var projectFile = Path.Combine(projectDirectory, projectName + ".csproj");
+            string refs = "";
+            if (i > 0)
+            {
+                refs =
+                    $"""
+                    <ProjectReference Include="..\Project{i - 1}.csproj" />
+
+                    """;
+            }
             File.WriteAllText(projectFile,
                 $"""
                 <Project Sdk="Microsoft.NET.Sdk">
                   <PropertyGroup>
                     <TargetFramework>net472</TargetFramework>
+                    <DefineConstants>{projectName}</DefineConstants>
                   </PropertyGroup>
                   <ItemGroup>
-                    <Compile Include="{sharedFile}" />
+                    {refs}<Compile Include="{sharedFile}" />
                   </ItemGroup>
                 </Project>
                 """);
