@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net472</TargetFramework>
+  </PropertyGroup>
+
+  <Target Name="GenerateSomeCsFiles" BeforeTargets="CoreCompile">
+
+    <ItemGroup>
+      <GeneratedFile Include="$(IntermediateOutputPath)Generated.g.cs" />
+      <Lines Include="using System%3B" />
+      <Lines Include="class Generated { public static void Method() { } }" />
+    </ItemGroup>
+
+    <WriteLinesToFile 
+        File="%(GeneratedFile.FullPath)"
+        Lines="@(Lines)"
+        Overwrite="True"
+        WriteOnlyWhenDifferent="True" />
+
+    <ItemGroup>
+      <Compile Include="@(GeneratedFile)" KeepDuplicates="False" />
+    </ItemGroup>
+
+  </Target>
+
+</Project>
