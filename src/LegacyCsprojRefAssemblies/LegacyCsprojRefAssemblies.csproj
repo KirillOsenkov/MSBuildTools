@@ -34,5 +34,10 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFrameworkRootPath Condition="Exists('$(UserProfile)\.nuget\packages\Microsoft.NETFramework.ReferenceAssemblies.net472\1.0.3\build')">$(UserProfile)\.nuget\packages\Microsoft.NETFramework.ReferenceAssemblies.net472\1.0.3\build</TargetFrameworkRootPath>
+  </PropertyGroup>
+
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
