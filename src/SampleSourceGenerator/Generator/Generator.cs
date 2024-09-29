@@ -21,7 +21,7 @@ namespace Generator
                     {
                         public static void GeneratedMethod()
                         {
-                           System.Console.WriteLine("hello world");
+                            System.Console.WriteLine("hello world");
                         }
                     }
                 }
