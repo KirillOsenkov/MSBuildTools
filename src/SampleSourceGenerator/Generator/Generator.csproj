@@ -5,6 +5,7 @@
     <IncludeBuildOutput>false</IncludeBuildOutput> 
     <LangVersion>Latest</LangVersion>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>
