@@ -28,7 +28,7 @@ namespace Generator
                 """;
 
             context.RegisterPostInitializationOutput(ctx => ctx.AddSource(
-                "myGeneratedFile.g.cs",
+                "MyGeneratedFile.g.cs",
                 SourceText.From(text, Encoding.UTF8)));
         }
     }
