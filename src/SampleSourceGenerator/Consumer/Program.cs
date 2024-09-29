@@ -1,7 +1,12 @@
-class Program
+namespace GeneratedNamespace;
+
+partial class Program
 {
     static void Main(string[] args)
     {
-        GeneratedNamespace.GeneratedClass.GeneratedMethod();
+        GeneratedAttribute.GeneratedMethod();
     }
+
+    [Generated]
+    partial void UserMethod();
 }
