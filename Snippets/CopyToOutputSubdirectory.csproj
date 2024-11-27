@@ -9,6 +9,11 @@
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     <Link>Subdirectory\%(FileName)%(Extension)</Link>
   </None>
+
+  <None Include="$(MSBuildThisFileDirectory)Recursive\**\*.txt">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Link>Subdirectory%(RecursiveDir)\%(FileName)%(Extension)</Link>
+  </None>
 </ItemGroup>
 
 </Project>
