@@ -1,5 +1,6 @@
 <Project>
-
+<!-- see also: https://github.com/dotnet/msbuild/issues/3479 (HasMetadata/WithMetadataValue)
+-->
   <ItemGroup>
     <Content Include="C:\temp\ifx\*">
     </Content>
