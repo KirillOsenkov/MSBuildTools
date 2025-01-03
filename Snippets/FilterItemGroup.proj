@@ -1,0 +1,20 @@
+<Project>
+
+  <ItemGroup>
+    <Content Include="C:\temp\ifx\*">
+    </Content>
+  </ItemGroup>
+
+  <Target Name="Build">
+    <ItemGroup>
+      <VCRuntimeFile Include="concrt140" />
+      <VCRuntimeFile Include="msvcp140" />
+      <VCRuntimeFile Include="msvcp140_1" />
+      <VCRuntimeFile Include="msvcp140_2" />
+      <VCRuntimeFile Include="vccorlib140" />
+      <VCRuntimeFile Include="vcruntime140" />
+      <Content Remove="@(Content)" Condition="%(Filename) == @(VCRuntimeFile->'%(Identity)')" />
+    </ItemGroup>
+  </Target>
+
+</Project>
