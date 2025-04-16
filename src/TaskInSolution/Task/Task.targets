@@ -4,10 +4,14 @@
     <GenerateTaskAssembly>$(MSBuildThisFileDirectory)bin\$(Configuration)\netstandard2.0\Task.dll</GenerateTaskAssembly>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <ProjectReference Include="$(MSBuildThisFileDirectory)Task.csproj"
         ReferenceOutputAssembly="False" />
-  </ItemGroup>
+  </ItemGroup>-->
+
+  <Target Name="EnsureTaskIsBuilt" BeforeTargets="BeforeBuild">
+    <MSBuild Projects="$(MSBuildThisFileDirectory)Task.csproj" />
+  </Target>
 
   <UsingTask TaskName="Generate" AssemblyFile="$(GenerateTaskAssembly)" TaskFactory="TaskHostFactory" />
 
