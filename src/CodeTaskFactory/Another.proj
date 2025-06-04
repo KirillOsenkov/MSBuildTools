@@ -1,0 +1,8 @@
+<Project>
+
+  <Import Project="Import.targets" />
+
+  <Target Name="AnotherTarget">
+    <CustomTask InputParameter="Foo" />
+  </Target>
+</Project>

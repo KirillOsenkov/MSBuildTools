@@ -1,29 +1,9 @@
 <Project>
-
-  <UsingTask
-    TaskName="CustomTask"
-    TaskFactory="CodeTaskFactory"
-    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
-
-    <ParameterGroup>
-      <InputParameter ParameterType="System.String" />
-      <OutputParameter ParameterType="System.String" Output="True" />
-    </ParameterGroup>
-
-    <Task>
-      <Using Namespace="System" />
-      <Code Type="Fragment" Language="cs">
-        <![CDATA[
-			    Console.WriteLine(this.InputParameter);
-          this.OutputParameter = "Hello " + this.InputParameter;
-      ]]>
-      </Code>
-    </Task>
-
-  </UsingTask>
+  
+  <Import Project="Import.targets" />
 
   <Target Name="Build">
-    <CustomTask InputParameter="Foo" />
+    <MSBuild Projects="Another.proj" Targets="AnotherTarget" />
     <CustomTask InputParameter="Bar" />
   </Target>
 
