@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>rcexe</id>
+    <version>10.0.26100.0</version>
+    <authors>Kirill Osenkov</authors>
+    <owners>Kirill Osenkov</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <description>rc.exe from Windows Kits</description>
+    <tags></tags>
+  </metadata>
+  <files>
+    <file src="x64\*" target="x64" />
+    <file src="x86\*" target="x86" />
+    <file src="arm64\*" target="arm64" />
+  </files>
+</package>
