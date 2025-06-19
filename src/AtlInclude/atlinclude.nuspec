@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>AtlInclude</id>
+    <version>14.44.35207</version>
+    <authors>Kirill Osenkov</authors>
+    <owners>Kirill Osenkov</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <description>Contents of C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.44.35207\atlmfc\include</description>
+    <tags></tags>
+  </metadata>
+  <files>
+    <file src="atlmfc\include\**\*" target="atlmfc\include" />
+  </files>
+</package>
