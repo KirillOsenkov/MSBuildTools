@@ -35,21 +35,27 @@ public class MultiProjectEval
 
         foreach (var projectFilePath in projects)
         {
-            var project = collection.LoadProject(projectFilePath);
-            var targetFrameworks = project.GetProperty("TargetFrameworks")?.EvaluatedValue;
-            if (!string.IsNullOrWhiteSpace(targetFrameworks))
+            try
             {
-                var tfms = targetFrameworks.Split(';').Select(s => s.Trim());
-                foreach (var tfm in tfms)
+                var project = collection.LoadProject(projectFilePath);
+                var targetFrameworks = project.GetProperty("TargetFrameworks")?.EvaluatedValue;
+                if (!string.IsNullOrWhiteSpace(targetFrameworks))
                 {
-                    project.SetGlobalProperty("TargetFramework", tfm);
-                    project.ReevaluateIfNecessary();
+                    var tfms = targetFrameworks.Split(';').Select(s => s.Trim());
+                    foreach (var tfm in tfms)
+                    {
+                        project.SetGlobalProperty("TargetFramework", tfm);
+                        project.ReevaluateIfNecessary();
+                        GetProperties(project);
+                    }
+                }
+                else
+                {
                     GetProperties(project);
                 }
             }
-            else
+            catch
             {
-                GetProperties(project);
             }
         }
 
