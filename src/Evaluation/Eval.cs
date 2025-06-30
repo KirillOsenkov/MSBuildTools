@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.Serialization;
+using System.Threading;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Execution;
@@ -21,7 +22,8 @@ class Entrypoint
     static void Main(string[] args)
     {
         MSBuildLocator.RegisterDefaults();
-        Evaluator.Run(args);
+        MultiProjectEval.Run(args);
+        //Evaluator.Run(args);
     }
 }
 
@@ -33,7 +35,6 @@ class Evaluator
 
     private static readonly Type projectCollectionType = typeof(ProjectCollection);
     private static readonly Type loadedProjectCollectionType = typeof(ProjectCollection).GetNestedType("LoadedProjectCollection", BindingFlags.NonPublic);
-    private static readonly Type disposableReaderWriterLockSlimType = typeof(ProjectCollection).GetNestedType("DisposableReaderWriterLockSlim", BindingFlags.NonPublic);
 
     public static void Run(string[] args)
     {
@@ -84,7 +85,7 @@ class Evaluator
         var result = (ProjectCollection)FormatterServices.GetUninitializedObject(projectCollectionType);
         var _loadedProjectCollection = Activator.CreateInstance(loadedProjectCollectionType);
         result.SetFieldValue("_loadedProjects", _loadedProjectCollection);
-        result.SetFieldValue("_locker", Activator.CreateInstance(disposableReaderWriterLockSlimType));
+        result.SetFieldValue("_locker", new ReaderWriterLockSlim());
         result.SetFieldValue("<ToolsetLocations>k__BackingField", evaluationProjectCollection.ToolsetLocations);
         result.SetFieldValue("_maxNodeCount", 1);
         SetRootElementCache(result, this.projectRootElementCache);
