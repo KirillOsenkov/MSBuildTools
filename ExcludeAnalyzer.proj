@@ -1,0 +1,9 @@
+<Project>
+
+  <Target Name="ExcludeAnalyzers" BeforeTargets="CoreCompile">
+    <ItemGroup>
+      <Analyzer Remove="@(Analyzer->WithMetadataValue('NuGetPackageId', 'Microsoft.CodeAnalysis.Analyzers'))" />
+    </ItemGroup>
+  </Target>
+
+</Project>
