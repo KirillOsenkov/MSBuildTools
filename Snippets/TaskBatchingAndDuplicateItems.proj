@@ -1,0 +1,18 @@
+<Project>
+
+  <Target Name="Build">
+    <ItemGroup>
+      <AnnotatedProjects Include="A;A;B" />
+    </ItemGroup>
+    <Message Text="@(AnnotatedProjects) == %(Identity)" />
+    <ItemGroup>
+      <AnnotatedProjects Condition="@(AnnotatedProjects) == %(Identity)">
+        <UndefineProperties>%(AnnotatedProjects.UndefineProperties);TargetFramework</UndefineProperties>
+      </AnnotatedProjects>
+    </ItemGroup>
+    <ItemGroup>
+      <Foo Include="@(AnnotatedProjects)" />
+    </ItemGroup>
+  </Target>
+
+</Project>
