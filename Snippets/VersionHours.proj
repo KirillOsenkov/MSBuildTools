@@ -1,0 +1,22 @@
+<Project DefaultTargets="Build">
+
+  <PropertyGroup>
+    <!-- This increments every six hours to mimic the official version bumps from earlier.
+    Anchor date and seed number are picked to keep versions continuous. -->
+    <Version>$([MSBuild]::Add(
+      $([MSBuild]::Divide(
+        $([System.Convert]::ToInt32(
+          $([System.DateTime]::op_Subtraction(
+            $([System.DateTime]::UtcNow),
+            $([System.DateTime]::Parse('2026-02-10'))
+          ).TotalHours)
+        )),
+        6)),
+      27827))</Version>
+  </PropertyGroup>
+
+  <Target Name="Build">
+    <Message Text="$(Version)" Importance="High" />
+  </Target>
+
+</Project>
